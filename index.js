@@ -43,53 +43,53 @@ const fi = (function() {
     find: function(collection, predicate) {
       if (!(collection instanceof Array))
         collection = Object.values(collection)
-    
+
       for (let idx = 0; idx < collection.length; idx++)
         if (predicate(collection[idx])) return collection[idx]
-    
+
       return undefined
     },
-    
+
     filter: function(collection, predicate) {
       if (!(collection instanceof Array))
         collection = Object.values(collection)
-    
+
       const newArr = []
-    
+
       for (let idx = 0; idx < collection.length; idx++)
         if (predicate(collection[idx])) newArr.push(collection[idx])
-    
+
       return newArr
     },
-    
+
     size: function(collection) {
       return (collection instanceof Array) ? collection.length : Object.keys(collection).length
     },
-    
+
     first: function(collection, stop=false) {
       return (stop) ? collection.slice(0, stop) : collection[0]
     },
-    
+
     last: function(collection, start=false) {
       return (start) ? collection.slice(collection.length-start, collection.length) : collection[collection.length-1]
     },
-    
+
     compact: function(collection) {
       const badBad = new Set([false, null, 0, "", undefined, NaN])
       return collection.filter(el => !badBad.has(el))      },
-    
+
     sortBy: function(collection, callback) {
       const newArr = [...collection]
       return newArr.sort(function(a, b) {
         return callback(a) - callback(b)
       })
     },
-    
+
     unpack: function(receiver, arr) {
       for (let val of arr)
         receiver.push(val)
     },
-    
+
     flatten: function(collection, shallow, newArr=[]) {
       if (!Array.isArray(collection)) return newArr.push(collection)
       if (shallow) {
@@ -102,7 +102,7 @@ const fi = (function() {
       }
       return newArr
     },
-    
+
     uniqSorted: function(collection, iteratee) {
       const sorted = [collection[0]]
       for (let idx = 1; idx < collection.length; idx++) {
@@ -130,7 +130,7 @@ const fi = (function() {
         return Array.from(uniqVals)
       }
     },
-    
+
     keys: function(obj) {
       // Using for loop
       const keys = []
@@ -139,7 +139,7 @@ const fi = (function() {
       }
       return keys
     },
-    
+
     values: function(obj) {
       // Using for loop
       const values = []
@@ -147,12 +147,12 @@ const fi = (function() {
         values.push(obj[key])
       }
       return values
-    
+
       // Using the custom 'map' method from above
       // return this.map(obj, (value) => value)
-    
+
     },
-    
+
     functions: function(obj) {
       const functionNames = []
 
@@ -161,10 +161,10 @@ const fi = (function() {
           functionNames.push(key)
         }
       }
-    
+
       return functionNames.sort()
     },
-    
+
   }
 })()
 
